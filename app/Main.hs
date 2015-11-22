@@ -2,6 +2,8 @@ module Main where
 
 import           Lib
 
+-- Music S
+
 -- C, C#/Bb, etc... so 12 pitches
 data X = X0 | X1 | X2 | X3 | X4 | X5 | X6 | X7 | X8 | X9 | X10 | X11
          deriving (Show,Eq)
@@ -15,6 +17,9 @@ instance Functor Set where
 
 setX :: Set X
 setX = Set [X0,X1,X2,X3,X4,X5,X6,X7,X8,X9,X10,X11]
+
+idX :: X -> X
+idX = id
 
 -- pitch class names
 -- data C = CSS | CSSlashDb | DSS | DSSlashEb | ESS | FSS | FSSlashGb
@@ -52,6 +57,9 @@ setZ :: Set Z
 setZ = Set [CSS, CS, Db, DSS, DS, Eb, ESS, FSS, FS, Gb,
             GSS, GS, Ab, ASS, AS, Bb, BSS]
 
+idZ :: Z -> Z
+idZ = id
+
 n :: Z -> X
 n CSS = X0
 n CS  = X1
@@ -81,6 +89,9 @@ data L = A | B | C | D | E | F | G
 -- Letter names of the pitch class names
 setL :: Set L
 setL = Set [C,D,E,F,G,A,B]
+
+idL :: L -> L
+idL = id
 
 -- Pitch class names to its letter
 t :: Z -> L
@@ -162,6 +173,21 @@ setFromJ' = fmap j' setL
 -- λ> fmap (t . j) setL == setL
 -- True
 -- it :: Bool
+
+-- Definition:
+-- For a diagram to commute, all paths between two objects must be
+-- interpreted as the same arrow
+
+-- Identity laws: 1B . f = f . 1A = f
+ -- In any category, the following diagram must commute:
+-- A -f-> B
+-- A -1A-> A
+-- B -1B-> B
+
+-- Initial object in S
+
+-- In any category C, an object 0 is said to be an Initial Object of
+-- C, if for all objects X in C, there is a unique C-arrow 0 -> X
 
 main :: IO ()
 main = someFunc
