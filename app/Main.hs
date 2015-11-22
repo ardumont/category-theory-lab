@@ -7,11 +7,14 @@ data X = X0 | X1 | X2 | X3 | X4 | X5 | X6 | X7 | X8 | X9 | X10 | X11
          deriving Show
 
 -- pitch class
-data SetX = SetX [X]
-            deriving Show
+data Set a = Set [a]
+             deriving Show
 
-setX :: SetX
-setX = SetX [X0,X1,X2,X3,X4,X5,X6,X7,X8,X9,X10,X11]
+instance Functor Set where
+  fmap f (Set l) = Set (map f l)
+
+setX :: Set X
+setX = Set [X0,X1,X2,X3,X4,X5,X6,X7,X8,X9,X10,X11]
 
 -- pitch class names
 -- data C = CSS | CSSlashDb | DSS | DSSlashEb | ESS | FSS | FSSlashGb
@@ -20,9 +23,9 @@ setX = SetX [X0,X1,X2,X3,X4,X5,X6,X7,X8,X9,X10,X11]
 
 -- data SetC = SetC [C]
 
--- setC :: SetC
--- setC = SetC [CSS, CSSlashDb, DSS, DSSlashEb, ESS, FSS, FSSlashGb,
---              GSS, GSSlashAb, ASS, ASSlashBb, BSS]
+-- setC :: Set [C]
+-- setC = Set [CSS, CSSlashDb, DSS, DSSlashEb, ESS, FSS, FSSlashGb,
+--             GSS, GSSlashAb, ASS, ASSlashBb, BSS]
 
 -- p :: C -> X
 -- p CSS       = X0
@@ -45,12 +48,9 @@ data Z = CSS | CS | Db | DSS | DS | Eb | ESS | FSS | FS | Gb
        deriving Show
 
 -- Pitch class names
-data SetZ = SetZ [Z]
-            deriving Show
-
-setZ :: SetZ
-setZ = SetZ [CSS, CS, Db, DSS, DS, Eb, ESS, FSS, FS, Gb,
-             GSS, GS, Ab, ASS, AS, Bb, BSS]
+setZ :: Set Z
+setZ = Set [CSS, CS, Db, DSS, DS, Eb, ESS, FSS, FS, Gb,
+            GSS, GS, Ab, ASS, AS, Bb, BSS]
 
 n :: Z -> X
 n CSS = X0
@@ -79,11 +79,8 @@ data L = A | B | C | D | E | F | G
          deriving Show
 
 -- Letter names of the pitch class names
-data SetL = SetL [L]
-            deriving Show
-
-setL :: SetL
-setL = SetL [C,D,E,F,G,A,B]
+setL :: Set L
+setL = Set [C,D,E,F,G,A,B]
 
 -- Pitch class names to its letter
 t :: Z -> L
@@ -137,6 +134,26 @@ j B = BSS
 --           t: Z -> L
 --           i: L -> Z
 --           j: L -> Z
+
+i' :: L -> X
+i' = n . i
+
+setFromI' :: Set X
+setFromI' = fmap i' setL
+
+-- λ> setFromI'
+-- Set [X0,X2,X4,X5,X7,X9,X11]
+-- it :: Set X
+
+j' :: L -> X
+j' = n . j
+
+setFromJ' :: Set X
+setFromJ' = fmap j' setL
+
+-- λ> setFromJ'
+-- Set [X0,X2,X3,X5,X7,X8,X11]
+-- it :: Set X
 
 main :: IO ()
 main = someFunc
