@@ -2,6 +2,7 @@ module Main where
 
 import           Lib
 
+-- C, C#/Bb, etc... so 12 pitches
 data X = X0 | X1 | X2 | X3 | X4 | X5 | X6 | X7 | X8 | X9 | X10 | X11
          deriving Show
 
@@ -38,6 +39,7 @@ setX = SetX [X0,X1,X2,X3,X4,X5,X6,X7,X8,X9,X10,X11]
 -- p BSS       = X11
 -- Note: not as basic as possible
 
+-- 12 pitches but some have 2 definitions D#/Eb is the same pitch... so 12 + 5 aliases
 data Z = CSS | CS | Db | DSS | DS | Eb | ESS | FSS | FS | Gb
        | GSS | GS | Ab | ASS | AS | Bb | BSS
        deriving Show
@@ -124,6 +126,10 @@ j F = FSS
 j G = GSS
 j A = Ab
 j B = BSS
+
+-- a regular mode is any map mi:L -> Z for which the map m:Z -> L is a
+-- retraction, & for which the induced composite which n:Z -> X,
+-- n . mi is a monomorphism ...
 
 main :: IO ()
 main = someFunc
