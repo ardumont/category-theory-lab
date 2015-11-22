@@ -81,7 +81,7 @@ data SetL = SetL [L]
             deriving Show
 
 setL :: SetL
-setL = SetL [A,B,C,D,E,F,G]
+setL = SetL [C,D,E,F,G,A,B]
 
 -- Pitch class names to its letter
 t :: Z -> L
