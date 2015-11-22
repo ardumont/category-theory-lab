@@ -4,11 +4,11 @@ import           Lib
 
 -- C, C#/Bb, etc... so 12 pitches
 data X = X0 | X1 | X2 | X3 | X4 | X5 | X6 | X7 | X8 | X9 | X10 | X11
-         deriving Show
+         deriving (Show,Eq)
 
 -- pitch class
 data Set a = Set [a]
-             deriving Show
+             deriving (Show, Eq)
 
 instance Functor Set where
   fmap f (Set l) = Set (map f l)
@@ -45,7 +45,7 @@ setX = Set [X0,X1,X2,X3,X4,X5,X6,X7,X8,X9,X10,X11]
 -- 12 pitches but some have 2 definitions D#/Eb is the same pitch... so 12 + 5 aliases
 data Z = CSS | CS | Db | DSS | DS | Eb | ESS | FSS | FS | Gb
        | GSS | GS | Ab | ASS | AS | Bb | BSS
-       deriving Show
+       deriving (Show, Eq)
 
 -- Pitch class names
 setZ :: Set Z
@@ -76,7 +76,7 @@ n BSS = X11
 -- 5 dual arrows from domain to codomain
 
 data L = A | B | C | D | E | F | G
-         deriving Show
+         deriving (Show, Eq)
 
 -- Letter names of the pitch class names
 setL :: Set L
@@ -154,6 +154,14 @@ setFromJ' = fmap j' setL
 -- λ> setFromJ'
 -- Set [X0,X2,X3,X5,X7,X8,X11]
 -- it :: Set X
+
+-- t . j :: L -> L
+-- λ> fmap (t . j) setL
+-- Set [C,D,E,F,G,A,B]
+-- it :: Set L
+-- λ> fmap (t . j) setL == setL
+-- True
+-- it :: Bool
 
 main :: IO ()
 main = someFunc
