@@ -105,5 +105,25 @@ t BSS = B
 
 -- Note: 4 cluster-2 relations + 3 cluster-3 relations
 
+-- Major mode is a regular mode
+i :: L -> Z
+i C = CSS
+i D = DSS
+i E = ESS
+i F = FSS
+i G = GSS
+i A = ASS
+i B = BSS
+
+-- minor mode is a regular mode
+j :: L -> Z
+j C = CSS
+j D = DSS
+j E = Eb
+j F = FSS
+j G = GSS
+j A = Ab
+j B = BSS
+
 main :: IO ()
 main = someFunc
