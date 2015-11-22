@@ -131,5 +131,12 @@ j B = BSS
 -- retraction, & for which the induced composite which n:Z -> X,
 -- n . mi is a monomorphism ...
 
+-- Category MusicS so far:
+-- 3 objects: X,Z,L
+-- 4 arrows: n: Z -> X
+--           t: Z -> L
+--           i: L -> Z
+--           j: L -> Z
+
 main :: IO ()
 main = someFunc
