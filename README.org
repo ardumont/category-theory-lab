@@ -1,0 +1,4 @@
+#+title: category theory lab
+#+author: ardumont
+
+Learn some category theory with haskell
