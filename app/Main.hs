@@ -2,10 +2,12 @@ module Main where
 
 import           Lib
 
--- pitch class
 data X = X0 | X1 | X2 | X3 | X4 | X5 | X6 | X7 | X8 | X9 | X10 | X11
+         deriving Show
 
+-- pitch class
 data SetX = SetX [X]
+            deriving Show
 
 setX :: SetX
 setX = SetX [X0,X1,X2,X3,X4,X5,X6,X7,X8,X9,X10,X11]
@@ -38,8 +40,11 @@ setX = SetX [X0,X1,X2,X3,X4,X5,X6,X7,X8,X9,X10,X11]
 
 data Z = CSS | CS | Db | DSS | DS | Eb | ESS | FSS | FS | Gb
        | GSS | GS | Ab | ASS | AS | Bb | BSS
+       deriving Show
 
+-- Pitch class names
 data SetZ = SetZ [Z]
+            deriving Show
 
 setZ :: SetZ
 setZ = SetZ [CSS, CS, Db, DSS, DS, Eb, ESS, FSS, FS, Gb,
@@ -63,6 +68,42 @@ n ASS = X9
 n AS  = X10
 n Bb  = X10
 n BSS = X11
+
+-- Note:
+-- 7 single arrows from domain to codomain
+-- 5 dual arrows from domain to codomain
+
+data L = A | B | C | D | E | F | G
+         deriving Show
+
+-- Letter names of the pitch class names
+data SetL = SetL [L]
+            deriving Show
+
+setL :: SetL
+setL = SetL [A,B,C,D,E,F,G]
+
+-- Pitch class names to its letter
+t :: Z -> L
+t CSS = C
+t CS  = C
+t Db  = D
+t DSS = D
+t DS  = D
+t Eb  = E
+t ESS = E
+t FSS = F
+t FS  = F
+t Gb  = G
+t GSS = G
+t GS  = G
+t Ab  = A
+t ASS = A
+t AS  = A
+t Bb  = B
+t BSS = B
+
+-- Note: 4 cluster-2 relations + 3 cluster-3 relations
 
 main :: IO ()
 main = someFunc
