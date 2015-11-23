@@ -2,6 +2,7 @@ module Main where
 
 import           Lib
 
+-- Notes from https://www.youtube.com/watch?v=P6DvIfTJhx8
 -- Music S
 
 -- C, C#/Bb, etc... so 12 pitches
